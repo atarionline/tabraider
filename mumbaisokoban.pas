@@ -102,7 +102,7 @@ begin
    blockpointy[id] := ny;
    if (map[ny, nx] = 3) and (map[y, x] = 0) and (blockpointelementtype[id]=3) then
      {if the block is moved from an empty cell, then we decrease the counter of free containers}
-        Dec(freesq);
+        Dec(freesq)
    else if (map[ny, nx] = 0) and (map[y, x] = 3)  and (blockpointelementtype[id]=3) then
      {if we move box out of a target, increase the counter of free containers}
      Inc(freesq);
@@ -176,7 +176,10 @@ begin
        blockpointy[lastplayerindex] := oldpy;
 end;
 
+
+{main}
 begin
+
  freesq := 1;
  countsq := 0;
  {1-wall,2-pleceforbox,3-box,4-startsocoban,6-holycow,7-othersocoban}
@@ -211,7 +214,7 @@ begin
        else map[i, j] := 0; {empty}
      end;
    end;
-  
+
 
 
  while (freesq > 1) do
