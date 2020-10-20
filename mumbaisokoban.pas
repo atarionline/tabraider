@@ -20,7 +20,7 @@ const
  cmap: array [0..135] of byte = (
    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-   1,0,0,0,2,0,3,0,0,3,0,0,6,0,0,0,1,
+   1,0,0,0,2,0,3,0,0,0,0,0,6,0,0,0,1,
    1,0,0,0,2,0,3,0,0,0,0,0,0,0,0,0,1,
    1,0,0,0,2,0,3,0,0,4,0,0,0,0,7,0,1,
    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -102,7 +102,7 @@ begin
    blockpointy[id] := ny;
    if (map[ny, nx] = 3) and (map[y, x] = 0) and (blockpointelementtype[id]=3) then
      {if the block is moved from an empty cell, then we decrease the counter of free containers}
-     Dec(freesq)
+        Dec(freesq);
    else if (map[ny, nx] = 0) and (map[y, x] = 3)  and (blockpointelementtype[id]=3) then
      {if we move box out of a target, increase the counter of free containers}
      Inc(freesq);
@@ -199,7 +199,7 @@ begin
          blockpointx[freesq] := j;
          blockpointy[freesq] := i;
          blockpointelementtype[freesq]:= v;
-         Inc(freesq);
+         if v=3 then Inc(freesq);
          Inc(countsq);
        end; {block}
        4:
@@ -211,7 +211,7 @@ begin
        else map[i, j] := 0; {empty}
      end;
    end;
-   readln;
+  
 
 
  while (freesq > 1) do
